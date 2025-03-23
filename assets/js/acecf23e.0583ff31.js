@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkapiand_docs=self.webpackChunkapiand_docs||[]).push([[1903],{1912:a=>{a.exports=JSON.parse('{"blogBasePath":"/apiand-docs/blog","blogTitle":"Blog","authorsListPath":"/apiand-docs/blog/authors"}')}}]);
