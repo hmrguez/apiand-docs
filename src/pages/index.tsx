@@ -50,7 +50,10 @@ export default function Home() {
     return (
         <Layout
             title={`${siteConfig.title}`}
-            description={siteConfig.tagline}>
+            description={siteConfig.tagline}
+            noFooter={true}
+
+>
             {/* You can either use the Docusaurus Header or your custom Header */}
             {/* <Header /> */}
             <main>

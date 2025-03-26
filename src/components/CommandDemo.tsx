@@ -5,13 +5,13 @@ import AnimatedText from "@site/src/components/ui/animated-text";
 const commandExamples = [
     {
         title: 'Create a new API project',
-        command: 'apiand new my-awesome-api --architecture ddd',
+        command: 'apiand new ddd --project-name my-awesome-api',
         description: 'Scaffolds a new API project with Domain-Driven Design architecture'
     },
     {
-        title: 'Generate a service with AI',
-        command: 'apiand generate service product --ai "Create a product catalog service with categorization"',
-        description: 'Uses AI to create a full-featured product service based on your description'
+        title: 'Generate a service',
+        command: 'apiand generate service User',
+        description: 'Adds a new service with interface and dependency injection'
     },
     {
         title: 'Add a new endpoint',
@@ -86,51 +86,13 @@ const CommandDemo: React.FC = () => {
                                 <div className="text-xs text-gray-400">terminal</div>
                             </div>
                             <div className="code-window-body font-mono text-sm">
-                                <div className="text-green-400">$ </div>
+                                <div className="inline text-green-400">$ </div>
                                 <div className="inline text-blue-400">{commandExamples[activeIndex].command.split(' ')[0]}</div>
                                 <div className="inline text-white">{' ' + commandExamples[activeIndex].command.split(' ').slice(1).join(' ')}</div>
                                 <div className="h-2"></div>
                                 <div className="text-gray-400 mt-1">✓ Parsing command...</div>
                                 <div className="text-gray-400 mt-1">✓ Validating options...</div>
                                 <div className="text-gray-400 mt-1">✓ Generating files...</div>
-                                {activeIndex === 1 && (
-                                    <>
-                                        <div className="text-gray-400 mt-1">✓ Analyzing AI description...</div>
-                                        <div className="text-gray-400 mt-1">✓ Creating domain models...</div>
-                                        <div className="text-gray-400 mt-1">✓ Implementing service logic...</div>
-                                    </>
-                                )}
-                                <div className="text-white mt-2">✨ Operation completed successfully! Files created:</div>
-                                {activeIndex === 0 && (
-                                    <>
-                                        <div className="text-green-400 mt-1">   create my-awesome-api/src/Domain/</div>
-                                        <div className="text-green-400 mt-1">   create my-awesome-api/src/Application/</div>
-                                        <div className="text-green-400 mt-1">   create my-awesome-api/src/Infrastructure/</div>
-                                        <div className="text-green-400 mt-1">   create my-awesome-api/src/Api/</div>
-                                    </>
-                                )}
-                                {activeIndex === 1 && (
-                                    <>
-                                        <div className="text-green-400 mt-1">   create src/Domain/Product/Product.cs</div>
-                                        <div className="text-green-400 mt-1">   create src/Domain/Product/IProductRepository.cs</div>
-                                        <div className="text-green-400 mt-1">   create src/Application/Product/ProductService.cs</div>
-                                        <div className="text-green-400 mt-1">   create src/Api/Controllers/ProductController.cs</div>
-                                    </>
-                                )}
-                                {activeIndex === 2 && (
-                                    <>
-                                        <div className="text-green-400 mt-1">   create src/Api/Controllers/OrdersController.cs</div>
-                                        <div className="text-green-400 mt-1">   create src/Application/Orders/Dtos/CreateOrderDto.cs</div>
-                                        <div className="text-green-400 mt-1">   update src/Api/Controllers/OrdersController.cs</div>
-                                    </>
-                                )}
-                                {activeIndex === 3 && (
-                                    <>
-                                        <div className="text-green-400 mt-1">   create src/Domain/Customer/Customer.cs</div>
-                                        <div className="text-green-400 mt-1">   create src/Domain/Customer/ICustomerRepository.cs</div>
-                                        <div className="text-green-400 mt-1">   create src/Application/Customer/CustomerMapper.cs</div>
-                                    </>
-                                )}
                             </div>
                         </div>
                     </div>
