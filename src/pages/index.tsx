@@ -1,34 +1,68 @@
-import type {ReactNode} from 'react';
-import clsx from 'clsx';
-import Link from '@docusaurus/Link';
-import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
+import React, {useEffect} from 'react';
 import Layout from '@theme/Layout';
-import HomepageFeatures from '@site/src/components/HomepageFeatures';
-import Heading from '@theme/Heading';
+import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 
-import styles from './index.module.css';
+// Import your custom components
+import Header from '../components/Header';
+import Hero from '../components/Hero';
+import Features from '../components/Features';
+import CodeExample from '../components/CodeExample';
+import ArchitectureShowcase from '../components/ArchitectureShowcase';
+import CommandDemo from '../components/CommandDemo';
+import Roadmap from '../components/Roadmap';
+import Footer from '../components/Footer';
 
-function HomepageHeader() {
-  const {siteConfig} = useDocusaurusContext();
-  return (
-    <header className={clsx('hero hero--primary', styles.heroBanner)}>
-      <div className="container">
-        <Heading as="h1" className="hero__title">
-          {siteConfig.title}
-        </Heading>
-        <p className="hero__subtitle">{siteConfig.tagline}</p>
-      </div>
-    </header>
-  );
-}
+export default function Home() {
+    const {siteConfig} = useDocusaurusContext();
 
-export default function Home(): ReactNode {
-  const {siteConfig} = useDocusaurusContext();
-  return (
-    <Layout
-      title={`Hello from ${siteConfig.title}`}
-      description="Description will go into a meta tag in <head />">
-      <HomepageHeader />
-    </Layout>
-  );
+    // Smooth scrolling for anchor links
+    useEffect(() => {
+        const handleAnchorClick = (e: Event) => {
+            const target = e.target as HTMLElement;
+            const href = target.getAttribute('href');
+
+            if (href && href.startsWith('#')) {
+                e.preventDefault();
+
+                const id = href.substring(1);
+                const element = document.getElementById(id);
+
+                if (element) {
+                    window.scrollTo({
+                        top: element.offsetTop - 80, // Adjusted for header
+                        behavior: 'smooth'
+                    });
+                }
+            }
+        };
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', handleAnchorClick);
+        });
+
+        return () => {
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.removeEventListener('click', handleAnchorClick);
+            });
+        };
+    }, []);
+
+    return (
+        <Layout
+            title={`${siteConfig.title}`}
+            description={siteConfig.tagline}>
+            {/* You can either use the Docusaurus Header or your custom Header */}
+            {/* <Header /> */}
+            <main>
+                <Hero/>
+                <Features/>
+                <CodeExample/>
+                <ArchitectureShowcase/>
+                <CommandDemo/>
+                <Roadmap/>
+            </main>
+            {/* You can either use Docusaurus Footer or your custom Footer */}
+            <Footer/>
+        </Layout>
+    );
 }
