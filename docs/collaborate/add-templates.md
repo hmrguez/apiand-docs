@@ -23,6 +23,7 @@ public abstract class ArchitectureType
     public abstract TemplateConfiguration BuildConfig(CommandOptions commandOptions);
     public abstract ValidationResult Validate(TemplateConfiguration configuration);
     public abstract Dictionary<string, string> Resolve(TemplateConfiguration configuration);
+    public abstract void ExecutePostCreationCommands(string outputPath, string projectName);
 }
 ```
 
@@ -33,9 +34,21 @@ The way the templating engine works is:
 2. It loads the variants for that architecture type, this means load all the templates available for that type.
 3. It builds the config for the template from the command.
 4. Validates that same config to check for errors
-5. If no errors were found then it resolves the requested template. This means it will return a dictionary of all the templates it will need to create. This is because some templates might need to create more than one file (for example a DDD template which requires modules or variants for Presentation, Domain, Application and Infrastructure). The key is the name folder when it will be created and the second one is the path to the template folder in the engine 
+5. If no errors were found then it resolves the requested template. This means it will return a dictionary of all the templates it will need to create. This is because some templates might need to create more than one file (for example a DDD template which requires modules or variants for Presentation, Domain, Application and Infrastructure). The key is the name folder when it will be created and the second one is the path to the template folder in the engine
+6. Finally, it adds all the projects to a common solution file and executes any post-creation commands that the template might need to run, commonly you'll add all `dotnet add reference`s here.
 
 When adding a new architecture type you have the freedom of the way it loads and resolves all the templates, however, it is recommended to follow the same pattern as the existing ones.
+
+You'll need to also create a new command for the CLI to use this new architecture type. Follow the implementation of the existing DDD one (src/Apiand.Cli/Commands/New/NewDddCommand.cs) for reference. Then add the command to the register subcommands in the base NewCommand class
+
+```typescript
+private void RegisterSubcommands()
+{
+    AddCommand(new NewDddCommand());
+    ...
+    // Add your new command here
+}
+```
 
 ## Adding a new template to an existing architecture type
 
