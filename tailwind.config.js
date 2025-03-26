@@ -18,6 +18,9 @@ module.exports = {
     extend: {
       colors: {
         border: 'hsl(var(--border))',
+        borderColor: {
+          DEFAULT: 'hsl(var(--border))', // This enables the border-border class
+        },
         input: 'hsl(var(--input))',
         ring: 'hsl(var(--ring))',
         background: 'hsl(var(--background))',
@@ -124,6 +127,12 @@ module.exports = {
       }
     }
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [
+    require("tailwindcss-animate"),
+  ],
+  corePlugins: {
+    preflight: false,
+    container: false
+  },
 }
 

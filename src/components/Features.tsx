@@ -48,7 +48,7 @@ const FeatureCard: React.FC<{ feature: typeof features[0]; index: number }> = ({
         <div
             ref={ref}
             className={`
-        p-6 rounded-xl bg-white border border-border shadow-sm 
+        p-6 rounded-xl bg-white ttttt shadow-sm 
         transition-all duration-500 transform
         ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}
       `}
