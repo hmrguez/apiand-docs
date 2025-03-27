@@ -118,41 +118,58 @@ h3 {
     font-weight: 500;
 }
 
-/*@tailwind base;*/
-/*@tailwind components;*/
-/*@tailwind utilities;*/
-
-/*@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=JetBrains+Mono:wght@100..800&display=swap');*/
-
 /*!***/
 /* * Any CSS included here will be global. The classic template*/
 /* * bundles Infima by default. Infima is a CSS framework designed to*/
 /* * work well for content-centric websites.*/
 /* *!*/
 
-/*!* You can override the default Infima variables here. *!*/
+/* You can override the default Infima variables here. */
+/* Blue and white themed colors for Docusaurus/Infima */
 /*:root {*/
-/*  --ifm-color-primary: #2e8555;*/
-/*  --ifm-color-primary-dark: #29784c;*/
-/*  --ifm-color-primary-darker: #277148;*/
-/*  --ifm-color-primary-darkest: #205d3b;*/
-/*  --ifm-color-primary-light: #33925d;*/
-/*  --ifm-color-primary-lighter: #359962;*/
-/*  --ifm-color-primary-lightest: #3cad6e;*/
+/*  --ifm-color-primary: #2563eb;*/
+/*  --ifm-color-primary-dark: #1d4ed8;*/
+/*  --ifm-color-primary-darker: #1e40af;*/
+/*  --ifm-color-primary-darkest: #1e3a8a;*/
+/*  --ifm-color-primary-light: #3b82f6;*/
+/*  --ifm-color-primary-lighter: #60a5fa;*/
+/*  --ifm-color-primary-lightest: #93c5fd;*/
+
+/*  --ifm-color-secondary: #e0f2fe;*/
+/*  --ifm-color-secondary-dark: #bae6fd;*/
+/*  --ifm-color-secondary-darker: #7dd3fc;*/
+/*  --ifm-color-secondary-darkest: #38bdf8;*/
+/*  --ifm-color-secondary-light: #eff6ff;*/
+/*  --ifm-color-secondary-lighter: #f1f5f9;*/
+/*  --ifm-color-secondary-lightest: #f8fafc;*/
+
+/*  --ifm-background-color: #ffffff;*/
+/*  --ifm-background-surface-color: #f8fafc;*/
+
+/*  --ifm-heading-color: #1e3a8a;*/
+/*  --ifm-font-color-base: #334155;*/
+
+/*  --ifm-navbar-background-color: #ffffff;*/
+/*  --ifm-navbar-link-color: #1e40af;*/
+/*  --ifm-navbar-link-hover-color: #3b82f6;*/
+
+/*  --ifm-footer-background-color: #f1f5f9;*/
+/*  --ifm-footer-link-color: #334155;*/
+
 /*  --ifm-code-font-size: 95%;*/
-/*  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);*/
+/*  --docusaurus-highlighted-code-line-bg: rgba(37, 99, 235, 0.1);*/
 /*}*/
 
-/*!* For readability concerns, you should choose a lighter palette in dark mode. *!*/
-/*[data-theme='dark'] {*/
-/*  --ifm-color-primary: #25c2a0;*/
-/*  --ifm-color-primary-dark: #21af90;*/
-/*  --ifm-color-primary-darker: #1fa588;*/
-/*  --ifm-color-primary-darkest: #1a8870;*/
-/*  --ifm-color-primary-light: #29d5b0;*/
-/*  --ifm-color-primary-lighter: #32d8b4;*/
-/*  --ifm-color-primary-lightest: #4fddbf;*/
-/*  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);*/
+/*!* For your syntax highlighting (code blocks) *!*/
+/*[data-theme='light'] {*/
+/*  --prism-background-color: #f8fafc;*/
+/*  --prism-color: #334155;*/
+/*  --prism-keyword: #1d4ed8;*/
+/*  --prism-function: #2563eb;*/
+/*  --prism-string: #0369a1;*/
+/*  --prism-number: #0e7490;*/
+/*  --prism-comment: #64748b;*/
+/*  --prism-punctuation: #475569;*/
 /*}*/
 
 #root {
