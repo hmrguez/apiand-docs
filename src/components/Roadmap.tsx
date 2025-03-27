@@ -28,6 +28,12 @@ const Roadmap: React.FC = () => {
         },
         {
             status: 'upcoming',
+            title: 'VS Studio / Rider plugins',
+            description: 'Add a UI wrapper for the CLI as a plugin for your IDE of preference',
+            timeframe: 'Short-term'
+        },
+        {
+            status: 'upcoming',
             title: 'Cloud-Native Integration',
             description: 'Seamless deployment to major cloud providers with zero configuration',
             timeframe: 'Medium-term'
