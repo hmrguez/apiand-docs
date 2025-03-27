@@ -15,12 +15,12 @@ const commandExamples = [
     },
     {
         title: 'Add a new endpoint',
-        command: 'apiand generate endpoint orders/create-order --method post',
-        description: 'Creates a new endpoint with validation, controller, and service integration'
+        command: 'apiand generate endpoint orders.createOrder --http-method Post',
+        description: 'Creates a new endpoint with payload, response and service integration'
     },
     {
         title: 'Generate domain entities',
-        command: 'apiand generate entity customer --attributes "name:string,email:string,status:enum[active,inactive]"',
+        command: 'apiand generate entity customer --attributes "name:string;email:string;status:enum[active,inactive]"',
         description: 'Creates a domain entity with specified attributes and validation'
     }
 ];
