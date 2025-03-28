@@ -1,0 +1,8 @@
+{
+  "label": "Templates",
+  "position": 3,
+  "link": {
+    "type": "generated-index",
+    "description": "Documentation for the templates and `new` commands provided by the Apiand framework"
+  }
+}
