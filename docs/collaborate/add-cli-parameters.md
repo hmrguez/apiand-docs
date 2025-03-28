@@ -1,5 +1,5 @@
 ---
-label: 'How to add new CLI parameters'
+sidebar_label: 'How to add new CLI parameters'
 ---
 
 # How to add new cli parameters
@@ -12,7 +12,7 @@ The CLI uses System.CommandLine. Go to the Apiand.Cli/Commands/New, this is the 
 
 You'll need to add a new option to the command and then add that option to the handler of the command, for example, let's say you want to add a new parameter called `--my-new-parameter`:
 
-```typescript
+```csharp
 public class NewCommand : Command
 {
     public NewCommand()
@@ -38,7 +38,7 @@ public class NewCommand : Command
 
 Then you should add the option to the CommandOptions class
 
-```typescript
+```csharp
 public class CommandOptions
 {
     ...
@@ -46,7 +46,7 @@ public class CommandOptions
 }
 ```
 
-```typescript
+```csharp
 public class NewCommand : Command
 {
     private void HandleCommand(string output, ..., string? myNewParameter)

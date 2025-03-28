@@ -1,6 +1,5 @@
 ---
 sidebar_position: 1
-
 ---
 
 # How to add templates
@@ -15,7 +14,7 @@ When creating new templates you can go 2 ways: create a new architecture type fr
 
 Now what's an architecture type? It is a way to group templates with similar nature together. It contains definitions for the templates, its modules, how to build the config, etc.
 
-```typescript
+```csharp
 public abstract class ArchitectureType
 {
     public abstract string Name { get; }
@@ -41,7 +40,7 @@ When adding a new architecture type you have the freedom of the way it loads and
 
 You'll need to also create a new command for the CLI to use this new architecture type. Follow the implementation of the existing DDD one (src/Apiand.Cli/Commands/New/NewDddCommand.cs) for reference. Then add the command to the register subcommands in the base NewCommand class
 
-```typescript
+```csharp
 private void RegisterSubcommands()
 {
     AddCommand(new NewDddCommand());
@@ -87,6 +86,10 @@ Here are both the options and the accepted options for each layer, which is used
 ## Need to add new parameters
 
 If you need to add new parameters for resolving your templates you can follow [this](collaborate/add-cli-parameters.md) guide
+
+## Generator support
+
+Most [`generate`](../components/generate) commands require specific behavior from the architecture type so you'll most likely need to check out [this](add-generators) guide on how to create your own generators for your new or modified template  
 
 ## Conclusion
 
