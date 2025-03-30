@@ -1,0 +1,304 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100..900&family=JetBrains+Mono:wght@100..800&display=swap');
+
+@import "tailwindcss";
+@tailwind utilities;
+
+@layer base {
+    :root {
+        /* Using theme.css variables for consistency */
+        --background: var(--sl-color-bg);
+        --foreground: var(--sl-color-text);
+
+        --card: var(--sl-color-gray-7);
+        --card-foreground: var(--sl-color-text);
+
+        --popover: var(--sl-color-gray-6);
+        --popover-foreground: var(--sl-color-text);
+
+        --primary: var(--sl-color-text);
+        --primary-foreground: var(--sl-color-bg);
+
+        /* New variable for contrasting primary color */
+        --contrast-primary: hsl(224, 10%, 90%); /* Default to light color for dark mode */
+
+        --secondary: var(--sl-color-gray-5);
+        --secondary-foreground: var(--sl-color-text);
+
+        --muted: var(--sl-color-gray-5);
+        --muted-foreground: var(--sl-color-gray-3);
+
+        --accent: var(--sl-color-gray-5);
+        --accent-foreground: var(--sl-color-text);
+
+        --destructive: var(--sl-color-red);
+        --destructive-foreground: var(--sl-color-bg);
+
+        --border: var(--sl-color-hairline-light);
+        --input: var(--sl-color-hairline-light);
+        --ring: var(--sl-color-text);
+
+        --radius: 0.5rem;
+
+        --sidebar-background: var(--sl-color-bg-sidebar);
+        --sidebar-foreground: var(--sl-color-gray-3);
+        --sidebar-primary: var(--sl-color-text);
+        --sidebar-primary-foreground: var(--sl-color-bg);
+        --sidebar-accent: var(--sl-color-gray-5);
+        --sidebar-accent-foreground: var(--sl-color-text);
+        --sidebar-border: var(--sl-color-hairline);
+        --sidebar-ring: var(--sl-color-accent);
+
+        /* Architecture card colors - Dark Theme (default) */
+        --arch-blue-bg: hsl(234, 54%, 15%);
+        --arch-blue-border: hsl(234, 54%, 20%);
+        --arch-blue-text: hsl(234, 100%, 85%);
+        
+        --arch-purple-bg: hsl(281, 39%, 16%);
+        --arch-purple-border: hsl(281, 39%, 22%);
+        --arch-purple-text: hsl(281, 82%, 85%);
+        
+        --arch-green-bg: hsl(101, 39%, 16%);
+        --arch-green-border: hsl(101, 39%, 22%);
+        --arch-green-text: hsl(101, 82%, 85%);
+        
+        --arch-orange-bg: hsl(41, 39%, 16%);
+        --arch-orange-border: hsl(41, 39%, 22%);
+        --arch-orange-text: hsl(41, 82%, 85%);
+        
+        /* Code window variables */
+        --code-window-bg: var(--sl-color-gray-6);
+        --code-window-header-bg: var(--sl-color-gray-7);
+        --code-window-text: var(--sl-color-white);
+        --code-window-border: var(--sl-color-hairline-light);
+
+        /* Terminal text colors */
+        --terminal-prompt-color: var(--sl-color-green);
+        --terminal-command-color: var(--sl-color-blue);
+        --terminal-text-color: var(--sl-color-white);
+        --terminal-output-color: var(--sl-color-gray-3);
+
+        /* Roadmap card variables - Dark Theme (default) */
+        --roadmap-card-bg: var(--card);
+        --roadmap-card-border: var(--card-foreground);
+    }
+
+    /* No need for manual dark mode overrides since theme.css handles this */
+
+    * {
+        border-color: hsl(var(--border));
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+
+    body {
+        background-color: hsl(var(--background));
+        color: hsl(var(--foreground));
+        font-family: 'Roboto', var(--__sl-font);
+        overflow-x: hidden;
+    }
+
+    /* Setting contrast primary for light theme */
+    [data-theme='light'] {
+        --contrast-primary: hsl(224, 10%, 10%); /* Dark color for light theme */
+        
+        /* Architecture card colors - Light Theme */
+        --arch-blue-bg: hsl(234, 88%, 95%);
+        --arch-blue-border: hsl(234, 88%, 90%);
+        --arch-blue-text: hsl(234, 80%, 30%);
+        
+        --arch-purple-bg: hsl(281, 80%, 95%);
+        --arch-purple-border: hsl(281, 80%, 90%);
+        --arch-purple-text: hsl(281, 90%, 30%);
+        
+        --arch-green-bg: hsl(101, 85%, 95%);
+        --arch-green-border: hsl(101, 85%, 90%);
+        --arch-green-text: hsl(101, 80%, 22%);
+        
+        --arch-orange-bg: hsl(41, 90%, 95%);
+        --arch-orange-border: hsl(41, 90%, 90%);
+        --arch-orange-text: hsl(41, 80%, 25%);
+        
+        /* Code window variables - Light Theme */
+        --code-window-bg: var(--sl-color-gray-6);
+        --code-window-header-bg: var(--sl-color-gray-7);
+        --code-window-text: var(--sl-color-gray-1);
+        --code-window-border: var(--sl-color-hairline-light);
+
+        /* Terminal text colors - Light Theme */
+        --terminal-prompt-color: hsl(142, 76%, 36%);
+        --terminal-command-color: hsl(210, 100%, 50%);
+        --terminal-text-color: var(--sl-color-black);
+        --terminal-output-color: var(--sl-color-gray-4);
+
+        /* Roadmap card variables - Light Theme */
+        --roadmap-card-bg: hsl(210, 90%, 95%);
+        --roadmap-card-border: hsl(210, 90%, 90%);
+    }
+
+    .glass {
+        background-color: rgba(255, 255, 255, 0.8);
+        backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    @media (prefers-color-scheme: dark) {
+        .glass {
+            background-color: rgba(30, 30, 30, 0.8);
+            border: 1px solid rgba(60, 60, 60, 0.2);
+        }
+    }
+
+    .text-gradient {
+        background-clip: text;
+        color: transparent;
+        background-image: linear-gradient(to right, var(--contrast-primary), var(--sl-color-accent));
+        animation: text-shimmer 2.5s infinite;
+        background-size: 200% auto;
+    }
+
+    /* Terminal text styling */
+    .terminal-prompt {
+        color: var(--terminal-prompt-color);
+    }
+
+    .terminal-command {
+        color: var(--terminal-command-color);
+    }
+
+    .terminal-text {
+        color: var(--terminal-text-color);
+    }
+    
+    .terminal-output {
+        color: var(--terminal-output-color);
+    }
+
+    .code-window {
+        border-radius: 0.5rem;
+        overflow: hidden;
+        border: 1px solid var(--code-window-border);
+        background-color: var(--code-window-bg);
+        color: var(--code-window-text);
+        font-family: 'JetBrains Mono', var(--__sl-font-mono), serif;
+        font-size: var(--sl-text-sm);
+        position: relative;
+    }
+
+    .code-window-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0.75rem;
+        background-color: var(--code-window-header-bg);
+        border-bottom: 1px solid var(--code-window-border);
+    }
+
+    .code-window-dots {
+        display: flex;
+        gap: 0.375rem;
+    }
+
+    .code-window-dot {
+        margin-top: 0 !important;
+        width: 0.75rem;
+        height: 0.75rem;
+        border-radius: 9999px;
+    }
+
+    .code-window-body {
+        padding: 1rem;
+        overflow-x: auto;
+        border: none;
+    }
+
+    .code-window-body pre {
+        margin: 0;
+        padding: 0;
+        border: none !important; /* Use !important to override any other styles */
+        background: transparent;
+        white-space: pre-wrap;
+    }
+
+    /* Override for Starlight markdown styles */
+    .sl-markdown-content .code-window pre:not(:where(.not-content *)) {
+        border: none;
+        padding: 0;
+    }
+
+    .code-window-body code {
+        border: none;
+        background: transparent;
+        display: block;
+        font-family: 'JetBrains Mono', var(--__sl-font-mono), monospace;
+        line-height: 1.5;
+    }
+
+    .highlight {
+        position: relative;
+        display: inline-block;
+    }
+
+    .highlight::after {
+        content: "";
+        position: absolute;
+        z-index: -10;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 0.2em;
+        background-color: var(--sl-color-accent-low);
+        border-radius: 0.25rem;
+    }
+
+    .architecture-card {
+        padding: 1.5rem;
+        border-radius: 0.75rem;
+        background-color: hsl(var(--card));
+        border: 2px solid hsl(var(--border));
+        box-shadow: var(--sl-shadow-sm);
+        transition: all 300ms;
+        overflow: hidden;
+    }
+
+    .architecture-card:hover {
+        box-shadow: var(--sl-shadow-md);
+    }
+
+    .command-chip {
+        display: inline-flex;
+        align-items: center;
+        border-radius: 9999px;
+        padding: 0 0.75rem;
+        padding-top: 0.25rem;
+        padding-bottom: 0.25rem;
+        font-size: var(--sl-text-2xs);
+        font-weight: 500;
+        background-color: hsl(var(--secondary));
+        color: hsl(var(--secondary-foreground));
+    }
+
+    .dark-mode-toggle {
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 0.375rem;
+        padding: 0.5rem;
+        background-color: hsl(var(--secondary));
+        color: hsl(var(--secondary-foreground));
+        transition: all 150ms;
+    }
+
+    .dark-mode-toggle:hover {
+        background-color: hsl(var(--accent));
+    }
+
+    @keyframes text-shimmer {
+        0% {
+            background-position: 0% center;
+        }
+        100% {
+            background-position: -200% center;
+        }
+    }
+}

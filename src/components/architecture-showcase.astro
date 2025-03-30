@@ -1,0 +1,154 @@
+---
+// src/components/architecture-showcase.astro
+import AnimatedText from "./react/ui/animated-text.tsx";
+import {Card, CardGrid} from '@astrojs/starlight/components';
+
+const architectures = [
+    {
+        name: 'Domain-Driven Design',
+        description: 'Perfect for complex business domains with rich models and clearly defined boundaries',
+        features: ['Entities & Value Objects', 'Aggregates & Repositories', 'Domain Events', 'Bounded Contexts'],
+        color: 'blue',
+        pending: false
+    },
+    {
+        name: 'Hexagonal Architecture',
+        description: 'Isolates business logic from external concerns through ports and adapters',
+        features: ['Core Domain Isolation', 'Pluggable Adapters', 'Easy Testing', 'Infrastructure Independence'],
+        color: 'purple',
+        pending: true
+    },
+    {
+        name: 'Ye-Old-Monolith',
+        description: 'Simple straightforward one layer app for quick and easy development',
+        features: ['Fast Development', 'Simple Deployment', 'Easy to Reason About', 'Reduced Complexity'],
+        color: 'green',
+        pending: true
+    },
+    {
+        name: 'Microservices',
+        description: 'Distributed architecture for large-scale systems with independent deployable services',
+        features: ['Service Boundaries', 'Event-Based Communication', 'Independent Deployment', 'Scalability'],
+        color: 'orange',
+        pending: true
+    },
+];
+
+const getColorClasses = (color: string) => {
+    const colors: Record<string, { bg: string, border: string, text: string }> = {
+        blue: {
+            bg: 'var(--arch-blue-bg)',
+            border: 'var(--arch-blue-border)',
+            text: 'var(--arch-blue-text)'
+        },
+        purple: {
+            bg: 'var(--arch-purple-bg)',
+            border: 'var(--arch-purple-border)',
+            text: 'var(--arch-purple-text)'
+        },
+        green: {
+            bg: 'var(--arch-green-bg)',
+            border: 'var(--arch-green-border)',
+            text: 'var(--arch-green-text)'
+        },
+        orange: {
+            bg: 'var(--arch-orange-bg)',
+            border: 'var(--arch-orange-border)',
+            text: 'var(--arch-orange-text)'
+        }
+    };
+
+    return colors[color] || colors.blue;
+};
+---
+
+<section class="py-24 px-6" id="architectures">
+    <div class="max-w-7xl mx-auto flex flex-col gap-10">
+        <h2 class="text-3xl md:text-4xl font-bold text-center mb-4 fade-in-up">
+            Choose your <span class="text-gradient">architectural style</span>
+        </h2>
+
+        <p class="text-xl text-muted-foreground text-center mb-16 max-w-3xl mx-auto fade-in-up"
+           style="animation-delay: 100ms;">
+            One framework supporting multiple architectural patterns.
+            Select the approach that best fits your project's needs.
+        </p>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {architectures.map((architecture, index) => {
+                const colorClasses = getColorClasses(architecture.color);
+                return (
+                    <Card>
+                        <div class="flex items-center justify-between mb-4">
+                            <div
+                                class="inline-block rounded-full px-3 py-1 text-sm font-medium arch-badge"
+                                style={`background-color: ${colorClasses.bg}; border: 1px solid ${colorClasses.border}; color: ${colorClasses.text};`}>
+                                {architecture.name}
+                            </div>
+
+                            {architecture.pending && (
+                                <div
+                                    class="flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-medium arch-badge"
+                                    style={`background-color: ${colorClasses.bg}; border: 1px solid ${colorClasses.border}; color: ${colorClasses.text};`}>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
+                                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M18 6H5a2 2 0 0 0-2 2v3a2 2 0 0 0 2 2h13l4-3.5L18 6Z"></path>
+                                        <path d="M12 13v8"></path>
+                                        <path d="M12 3v3"></path>
+                                    </svg>
+                                    Roadmap
+                                </div>
+                            )}
+                        </div>
+
+                        <p class="text-muted-foreground mb-6">{architecture.description}</p>
+
+                        <ul class="space-y-2">
+                            {architecture.features.map((feature) => (
+                                <li class="flex items-start">
+                                    <div
+                                        class="w-5 h-5 rounded-full flex items-center justify-center mr-3 flex-shrink-0 mt-0.5 arch-icon"
+                                        style={`background-color: ${colorClasses.bg}; color: ${colorClasses.text};`}>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24"
+                                            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                            stroke-linejoin="round">
+                                            <polyline points="20 6 9 17 4 12"></polyline>
+                                        </svg>
+                                    </div>
+                                    <span class="text-sm">{feature}</span>
+                                </li>
+                            ))}
+                        </ul>
+                    </Card>
+                );
+            })}
+        </div>
+    </div>
+</section>
+
+<style>
+    .fade-in-up {
+        animation: fadeInUp 0.6s ease-out forwards;
+        opacity: 0;
+    }
+
+    .fade-in-card {
+        animation: fadeInUp 0.5s ease-out forwards;
+        //animation-delay: var(--delay);
+    }
+
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .arch-badge, .arch-icon {
+        transition: all 0.3s ease;
+    }
+</style>
