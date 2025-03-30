@@ -12,8 +12,8 @@ import react from '@astrojs/react';
 
 // https://astro.build/config
 export default defineConfig({
-    site: 'https://hmrguez.github.io/apiand-docs',
-    base: '/',
+    site: 'https://hmrguez.github.io',
+    base: '/apiand-docs',
     integrations: [starlight({
         plugins: [starlightThemeObsidian({
             backlinks: false,
