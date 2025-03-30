@@ -18,11 +18,11 @@ apiand generate <component-type> <name> [options]
 
 The `generate` command supports creating different component types in your project:
 
-| Component Type                  | Description                   |
-|---------------------------------|-------------------------------|
-| [`service`](generate-service)   | Generates a new service class |
-| [`endpoint`](generate-endpoint) | Generates a new API endpoint  |
-| [`entity`](generate-entity)     | Generates a new domain entity |
+| Component Type                     | Description                   |
+|------------------------------------|-------------------------------|
+| [`service`](../generate-service)   | Generates a new service class |
+| [`endpoint`](../generate-endpoint) | Generates a new API endpoint  |
+| [`entity`](../generate-entity)     | Generates a new domain entity |
 
 :::note
 
