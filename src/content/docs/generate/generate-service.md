@@ -20,3 +20,7 @@ apiand generate service UserService
 ## Behaviours
 
 - `DDD`: Generates a service interface in the Application layer and a service implementation in the Infrastructure layer; DI is done automagically with the `Service` attribute.
+
+- `Standalone`: Creates both the service interface and implementation in the same `Entity/path` folder (where 'path' is derived from the service name). For example, if the service name is `User.Auth`, the files will be created in the `Entity/User` folder.
+
+- `SingleLayer`: Same as Standalone - creates both interface and implementation files in the `Entity/path` folder based on the service name structure.

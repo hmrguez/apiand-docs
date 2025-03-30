@@ -14,7 +14,7 @@ and Infrastructure.
 | `--name`        | `-n`   | Project name                     | Yes      | `--name MyDddProject`      |
 | `--output`      | `-o`   | The output directory             | No       | `--output ./projects/ddd`  |
 | `--api-type`    | `-api` | API type (FastEndpoints)         | No       | `--api-type FastEndpoints` |
-| `--db-type`     | `-db`  | Database type (MongoDB)          | No       | `--db-type MongoDB`        |
+| `--db-type`     | `-db`  | Database type (MongoDB, EFCore)  | No       | `--db-type MongoDB`        |
 | `--application` | `-app` | Application layer type (MediatR) | No       | `--application MediatR`    |
 | `--domain`      | `-dom` | Domain layer type (Default)      | No       | `--domain Default`         |
 

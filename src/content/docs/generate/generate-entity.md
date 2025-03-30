@@ -31,3 +31,7 @@ apiand generate entity Product --attributes "name:string,price:decimal,category:
 ## Behaviours
 
 - `DDD`: Generates an entity class in the Domain layer with the specified attributes, if there are enums it creates a separate file for them.
+
+- `Standalone`: Generates an entity class and any enum classes in the `Entity/path` folder (where 'path' is derived from the entity name). For example, if the entity name is `Product.Category`, files will be created in `Entity/Product` folder.
+
+- `SingleLayer`: Same as Standalone - generates entity and enum files in the `Entity/path` folder based on the entity name structure.
