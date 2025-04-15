@@ -15,9 +15,9 @@ apiand generate endpoint <name> [options]
 ## Options
 
 <OptionsTable options={[{
-    name: '--http-method',
+    name: '--method',
     alias: '-m',
-    description: 'HTTP method for endpoint endpoints (Get, Post, Put, Patch, Delete)',
+    description: 'Method for REST (Get, Post, Put, Patch, Delete) or GraphQL (Query, Mutation)',
     required: false,
     example: '--http-method Get'
 }]}/>
@@ -29,12 +29,14 @@ Generate a endpoint with HTTP methods:
 apiand generate endpoint User --http-method GET
 ```
 
-## Behaviours
+## Behaviors
 
-- `DDD` with `FastEndpoints` and `MediatR`: Generates the fast endpoint class with the specified HTTP method in the Presentation layer, and a request and response model in the Application layer, and a request handler in the Application layer, following the CQRS pattern with MediatR. If the `--http-method` option is not specified, it defaults to `Get`, if it is a `Get` it is a `Query`, otherwise it is a `Command`.
+- `DDD` :
+    - When `FastEndpoints`: Generates the fast endpoint class with the specified HTTP method in the Presentation layer, and a request and response model in the Application layer, and a request handler in the Application layer, following the CQRS pattern with MediatR. If the `--http-method` option is not specified, it defaults to `Get`, if it is a `Get` it is a `Query`, otherwise it is a `Command`.
+    - When `GraphQL`: Interprets the method name as Query or Mutation. Depending on which it resolves to the subfolder `Query` or `Mutation`, following the same approach as the other one. The request and response models are generated in the Application layer, and the request handler is generated in the Application layer, following the CQRS pattern with MediatR. If the `method` option is not specified, it defaults to `Query`.
 
-- `Standalone`: Creates a single FastEndpoints endpoint file in the `Endpoints/path` folder (where 'path' is derived from the endpoint name). The file contains all necessary components: request model, response model, endpoint configuration, and handler logic in one place. For example, if the endpoint name is `User.Login`, the file will be created in the `Endpoints/User` folder.
+- `SingleLayer`: Creates a single comprehensive endpoint file in the `Endpoints/path` folder containing request, response, configuration, and logic all in one file.
 
-- `SingleLayer`: Same as Standalone - creates a single comprehensive endpoint file in the `Endpoints/path` folder containing request, response, configuration, and logic all in one file.
+- `Microservices`: You'd ideally do each microservice as if it were a `SingleLayer` project
 
 `

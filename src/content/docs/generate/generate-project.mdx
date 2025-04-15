@@ -1,0 +1,33 @@
+---
+title: generate project
+sidebar:
+    badge: new
+---
+import OptionsTable from '../../../components/OptionsTable.astro';
+
+The `generate project` command adds a new microservice to an existing Apiand microservices project
+
+The service name will be [`project-name`].[`name`] (e.g. `Apiand.Inventory`).
+
+## Usage
+
+```bash
+apiand generate project <name> [options]
+```
+
+## Options
+
+<OptionsTable options={[{
+    name: '--graphql',
+    alias: '-gql',
+    description: 'Makes it a GraphQL project',
+    required: false,
+    example: '--graphql'
+}]}/>
+
+## Examples
+
+Generate a project:
+```bash
+apiand generate project Inventory
+```
