@@ -1,0 +1,64 @@
+---
+title: new microservices
+sidebar:
+    order: 4
+    badge: new
+---
+
+import OptionsTable from '../../../components/OptionsTable.astro';
+
+The `new microservices` command creates a microservices solution with 2 demo microservice projects
+
+This template is designed for making distributed microservices applications. Communication between them is done via the [CAP](https://cap.dotnetcore.xyz/user-guide/en/getting-started/quick-start/) framework configured with RabbitMQ. This framework abstracts a lot of the logic required for building this kind of applications, like message consumers and publishers, events, etc.
+
+The template is built around [.NET Aspire](https://learn.microsoft.com/en-us/dotnet/aspire/get-started/aspire-overview). The novel framework Microsoft is developing for streamlining development in ASP.NET Core. It provides a set of tools and libraries that simplify the process of building modern web applications, including microservices. Like resource orchestration, tooling, etc.
+
+To run the project you just need to have docker installed and run the AppHost project. That's the magic of Aspire!!. It will install the images of all the required services, like databases and message queues. No configuration is required as Aspire will take care of that for you, passing the required connection string to each project on start up.
+
+## Options
+
+<OptionsTable options={[{
+    name: '--name',
+    alias: '-n',
+    description: 'Project name',
+    required: true,
+    example: '--name MySimpleApi'
+}, {
+    name: '--output',
+    alias: '-o',
+    description: 'The output directory',
+    required: false,
+    example: '--output ./projects/simple'
+}, {
+    name: '--skip-interactive',
+    description: 'Skips the interactive prompt and uses the default values for all options',
+    required: false,
+    example: '--skip-interactive'
+}]}/>
+
+> Omitting the `--output` option will create the project in the current directory.
+
+## Usage
+
+```bash
+apiand new microservices --name MySimpleApi
+```
+
+## Features
+
+- **FastEndpoints**: Pre-configured API endpoints using the FastEndpoints framework,
+- **RabbitMQ**: Message broker for inter-service communication
+- **MongoDB**: Ready-to-use database integration, with more DBs to come
+- **Minimal Configuration**: Faster setup with sensible defaults
+- Is the only template with a predefined [generate project](../../generate/generate-project) command
+
+## When to Use
+
+The microservices architecture is ideal for:
+- Large-scale applications with distinct business capabilities
+- Systems requiring independent deployment and scaling of components
+- Projects with multiple teams working in parallel
+- Applications where different services have different resource requirements
+- Systems that need resilience through service isolation
+- Solutions that may need to evolve different parts at different rates
+- Projects where different microservices might use different technologies or data stores

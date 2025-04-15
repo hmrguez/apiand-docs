@@ -1,7 +1,7 @@
 ---
 title: new ddd
 sidebar:
-  order: 2
+    order: 2
 ---
 
 import OptionsTable from '../../../components/OptionsTable.astro';
@@ -25,17 +25,17 @@ and Infrastructure.
     required: false,
     example: '--output ./projects/ddd'
 }, {
-    name: '--api-type',
-    alias: '-api',
-    description: 'API type (FastEndpoints)',
+    name: '--presentation',
+    alias: '-pre',
+    description: 'API type (FastEndpoints, GraphQL)',
     required: false,
-    example: '--api-type FastEndpoints'
+    example: '--presentation FastEndpoints'
 }, {
-    name: '--db-type',
-    alias: '-db',
-    description: 'Database type (MongoDB, EFCore)',
+    name: '--infrastructure',
+    alias: '-inf',
+    description: 'Persistence layer (MongoDB, EFCore)',
     required: false,
-    example: '--db-type MongoDB'
+    example: '--db-type EFCore'
 }, {
     name: '--application',
     alias: '-app',
@@ -48,6 +48,17 @@ and Infrastructure.
     description: 'Domain layer type (Default)',
     required: false,
     example: '--domain Default'
+}, {
+    name: '--db-type',
+    alias: '-db',
+    description: 'Database type (SQLServer, PostgreSQL), required if EF Core selected',
+    required: false,
+    example: '--db-type SQLServer'
+}, {
+    name: '--skip-interactive',
+    description: 'Skips the interactive prompt and uses the default values for all options',
+    required: false,
+    example: '--skip-interactive'
 }]}/>
 
 > Omitting the `--output` option will create the project in the current directory.
@@ -59,3 +70,23 @@ and Infrastructure.
 ```bash
 apiand new ddd --name MyProject --api-type FastEndpoints --db-type MongoDB
 ```
+
+## Features
+
+- **Multi-Layer Architecture**: Organized into distinct layers (Presentation, Domain, Application, Infrastructure)
+- **Domain-Driven Design**: Focused on core business logic and domain models
+- **Flexible Infrastructure**: Support for multiple database options (MongoDB, EF Core with SQL Server or PostgreSQL)
+- **Presentation Options**: Choose between REST or GraphQL APIs
+- **CQRS Pattern**: Clean separation of commands and queries with MediatR
+- **Dependency Injection**: Well-structured service registration and configuration
+
+## When to Use
+
+The DDD architecture is ideal for:
+- Complex business domains with rich logic
+- Enterprise-level applications
+- Projects requiring clear separation of concerns
+- Applications expected to grow and evolve over time
+- Systems where business rules change frequently
+- Teams with specialized roles (domain experts, UI developers, etc.)
+- Projects where maintainability and scalability are top priorities

@@ -40,12 +40,22 @@ export default defineConfig({
                 autogenerate: {directory: 'templates'},
             },
             {
+                label: 'Guidelines',
+                badge: 'new',
+                autogenerate: {directory: 'guidelines'},
+            },
+            {
                 label: 'Collaborate',
                 autogenerate: {directory: 'collaborate'},
             },
             {
                 label: 'Reference',
                 autogenerate: {directory: 'reference'},
+            },
+            {
+                label: 'Extensions',
+                badge: 'new',
+                autogenerate: {directory: 'extensions'},
             }
         ],
     }), react()],

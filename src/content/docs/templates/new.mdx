@@ -1,7 +1,7 @@
 ---
 title: new
 sidebar:
-  order: 1
+    order: 1
 ---
 
 
@@ -22,6 +22,8 @@ The `new` command handles the core functionality for:
 The following architecture-specific commands are registered from the `new` command:
 
 - [`new ddd`](../new-ddd) - Creates a new project following Domain-Driven Design architecture
+- [`new single-layer`](../new-single-layer) - Creates a new single layer project
+- [`new microservices`](../new-microservices) - Creates a new microservices solution
 
 ## Usage
 
@@ -33,6 +35,14 @@ apiand new [architecture] [options]
 
 ## Remarks
 
+:::note
+
+All http templates use Fast Endpoints which is a cool library for building minimal APIs but fear not as you can just use controllers or regular minimal APIs as you'd use in your own project.
+
+:::
+
 You can check the documentation for each command for their options when building a new project.
+
+
 
 
