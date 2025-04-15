@@ -1,0 +1,61 @@
+---
+title: new ddd
+sidebar:
+  order: 2
+---
+
+import OptionsTable from '../../../components/OptionsTable.astro';
+
+The `new ddd` is a specialized command that inherits from the `new` command base class. It creates new projects
+following the Domain-Driven Design (DDD) architectural pattern building 4 projects: Presentation, Domain, Application
+and Infrastructure.
+
+## Options
+
+<OptionsTable options={[{
+    name: '--name',
+    alias: '-n',
+    description: 'Project name',
+    required: true,
+    example: '--name MyDddProject'
+}, {
+    name: '--output',
+    alias: '-o',
+    description: 'The output directory',
+    required: false,
+    example: '--output ./projects/ddd'
+}, {
+    name: '--api-type',
+    alias: '-api',
+    description: 'API type (FastEndpoints)',
+    required: false,
+    example: '--api-type FastEndpoints'
+}, {
+    name: '--db-type',
+    alias: '-db',
+    description: 'Database type (MongoDB, EFCore)',
+    required: false,
+    example: '--db-type MongoDB'
+}, {
+    name: '--application',
+    alias: '-app',
+    description: 'Application layer type (MediatR)',
+    required: false,
+    example: '--application MediatR'
+}, {
+    name: '--domain',
+    alias: '-dom',
+    description: 'Domain layer type (Default)',
+    required: false,
+    example: '--domain Default'
+}]}/>
+
+> Omitting the `--output` option will create the project in the current directory.
+
+> Omitting any other non required option will use the default value.
+
+## Usage
+
+```bash
+apiand new ddd --name MyProject --api-type FastEndpoints --db-type MongoDB
+```

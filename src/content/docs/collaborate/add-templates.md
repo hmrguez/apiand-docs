@@ -87,7 +87,7 @@ If you need to add new parameters for resolving your templates you can follow [t
 
 ## Generator support
 
-Most [`generate`](../generate/generate) commands require specific behavior from the architecture type so you'll most likely need to check out [this](add-generators) guide on how to create your own generators for your new or modified template  
+Most [`generate`](../generate/generate.mdx) commands require specific behavior from the architecture type so you'll most likely need to check out [this](add-generators) guide on how to create your own generators for your new or modified template  
 
 ## Conclusion
 

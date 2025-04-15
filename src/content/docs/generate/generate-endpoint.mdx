@@ -2,6 +2,8 @@
 title: generate endpoint
 ---
 
+import OptionsTable from '../../../components/OptionsTable.astro';
+
 The `generate endpoint` command adds endpoint components to an existing Apiand project.
 
 ## Usage
@@ -12,9 +14,13 @@ apiand generate endpoint <name> [options]
 
 ## Options
 
-| Option          | Alias | Description                                                        | Required | Example             |
-|-----------------|-------|--------------------------------------------------------------------|----------|---------------------|
-| `--http-method` | `-m`  | HTTP method for endpoint endpoints (Get, Post, Put, Patch, Delete) | No       | `--http-method Get` |
+<OptionsTable options={[{
+    name: '--http-method',
+    alias: '-m',
+    description: 'HTTP method for endpoint endpoints (Get, Post, Put, Patch, Delete)',
+    required: false,
+    example: '--http-method Get'
+}]}/>
 
 ## Examples
 
@@ -30,3 +36,5 @@ apiand generate endpoint User --http-method GET
 - `Standalone`: Creates a single FastEndpoints endpoint file in the `Endpoints/path` folder (where 'path' is derived from the endpoint name). The file contains all necessary components: request model, response model, endpoint configuration, and handler logic in one place. For example, if the endpoint name is `User.Login`, the file will be created in the `Endpoints/User` folder.
 
 - `SingleLayer`: Same as Standalone - creates a single comprehensive endpoint file in the `Endpoints/path` folder containing request, response, configuration, and logic all in one file.
+
+`

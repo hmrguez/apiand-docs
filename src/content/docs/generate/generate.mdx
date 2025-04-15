@@ -2,6 +2,8 @@
 title: 'generate'
 ---
 
+import OptionsTable from '../../../components/OptionsTable.astro';
+
 The `generate` command adds components to an existing Apiand project. It supports adding different component types with
 specific options.
 
@@ -34,8 +36,17 @@ Each generate command can have different options and behaviors depending on the 
 
 These are all the options supported by default on all `generate` commands:
 
-| Option   | Alias | Description                       | Required | Example                  |
-|----------|-------|-----------------------------------|----------|--------------------------|
-| `<name>` |       | Name of the component to generate | Yes      | `Product`                |
-| `--path` | `-p`  | Path to the project directory     | No       | `--path ./src/MyProject` |
+<OptionsTable options={[{
+    name: '--output',
+    alias: '-o',
+    description: 'Path where the configuration will be created',
+    required: false,
+    example: '--output ./app'
+}, {
+    name: '--name',
+    alias: '-n',
+    description: 'Name to use for the project in the configuration',
+    required: false,
+    example: '--name MyApp'
+}]}/>
 

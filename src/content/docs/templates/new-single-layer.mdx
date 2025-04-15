@@ -1,15 +1,28 @@
 ---
 title: new single-layer
+sidebar:
+  order: 3
 ---
+
+import OptionsTable from '../../../components/OptionsTable.astro';
 
 The `new single-layer` command creates a streamlined, single-layer application that integrates FastEndpoints with Dapper for PostgreSQL database access. This template offers a lightweight alternative to the other architectures when you need a simpler, more direct approach.
 
 ## Options
 
-| Option     | Alias | Description          | Required | Example                        |
-|------------|-------|----------------------|----------|--------------------------------|
-| `--name`   | `-n`  | Project name         | Yes      | `--name MySimpleApi`           |
-| `--output` | `-o`  | The output directory | No       | `--output ./projects/simple`   |
+<OptionsTable options={[{
+    name: '--name',
+    alias: '-n',
+    description: 'Project name',
+    required: true,
+    example: '--name MySimpleApi'
+}, {
+    name: '--output',
+    alias: '-o',
+    description: 'The output directory',
+    required: false,
+    example: '--output ./projects/simple'
+}]}/>
 
 > Omitting the `--output` option will create the project in the current directory.
 
@@ -34,3 +47,4 @@ The single-layer architecture is ideal for:
 - Rapid prototyping
 - Microservices with focused functionality
 - Projects where development speed is prioritized over complex domain modeling
+`
