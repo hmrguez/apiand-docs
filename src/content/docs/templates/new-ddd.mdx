@@ -10,6 +10,10 @@ The `new ddd` is a specialized command that inherits from the `new` command base
 following the Domain-Driven Design (DDD) architectural pattern building 4 projects: Presentation, Domain, Application
 and Infrastructure.
 
+The template is built around [.NET Aspire](https://learn.microsoft.com/en-us/dotnet/aspire/get-started/aspire-overview). The novel framework Microsoft is developing for streamlining development in ASP.NET Core. It provides a set of tools and libraries that simplify the process of building modern web applications, including microservices. Like resource orchestration, tooling, etc.
+
+To run the project you just need to have docker installed and run the AppHost project. That's the magic of Aspire!!. It will install the images of all the required services, like databases and message queues. No configuration is required as Aspire will take care of that for you, passing the required connection string to each project on start up.
+
 ## Options
 
 <OptionsTable options={[{

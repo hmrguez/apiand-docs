@@ -1,0 +1,82 @@
+---
+title: "Domain Driven Design"
+sidebar:
+    order: 2
+---
+
+## Domain Event
+
+The domain event is a class that represents an event that has occurred within the domain. It is used to communicate changes or actions that have taken place in the system. Domain events are typically used to trigger side effects or notify other parts of the system about significant changes.
+
+```csharp
+public abstract record DomainEvent
+{
+    public Guid Id { get; } = Guid.NewGuid();
+    public DateTime OccurredOn { get; } = DateTime.UtcNow;
+}
+```
+
+Domain events are immutable and should not be modified after they are created, that's why we use records to define them
+
+## Entity
+
+The entity in Domain Driven Design is a class that represents a business object with a unique identity. It is the core of the domain model and encapsulates the business logic and behavior associated with that object.
+
+```csharp
+public abstract class Entity
+{
+    /// <summary>
+    /// Unique identifier for this entity. Only set when inserting into the DB
+    /// </summary>
+    public string Id { get; set; }
+    public DateTime CreatedAt { get; protected set; }
+    public DateTime? UpdatedAt { get; protected set; }
+
+    public Entity()
+    {
+        Id = Guid.NewGuid().ToString();
+        CreatedAt = DateTime.UtcNow;
+    }
+}
+```
+
+Two entities are considered the same if their Ids are the same. Code for that is omitted in the snippet
+
+## AggregateRoot
+
+The aggregate root is a special type of entity that serves as the entry point for accessing and modifying a group of related entities. It ensures that all changes to the entities within the aggregate are made through the aggregate root, maintaining the integrity of the entire aggregate.
+
+```csharp
+public abstract class AggregateRoot : Entity
+{
+    private readonly List<DomainEvent> _domainEvents = [];
+
+    public IReadOnlyCollection<DomainEvent> DomainEvents => _domainEvents.AsReadOnly();
+
+    protected void AddDomainEvent(DomainEvent domainEvent)
+    {
+        _domainEvents.Add(domainEvent);
+    }
+
+    public void ClearDomainEvents()
+    {
+        _domainEvents.Clear();
+    }
+}
+```
+
+## Value Object
+
+In Domain Driven Design a value object is commonly referred to all the classes that are not entities. You'd typically use them to group properties that are not basic types but are not independent enought to be called entities (eg. Money, Address, etc). They are immutable and equality is based on the value of all its properties.
+
+```csharp
+public record ValueObject;
+```
+
+It's as simple as that. Records by default are immutable and equality is based on the value of all its properties. You can add properties to it as you see fit. This becomes practical in several situation. Like for example you have a Value Object called `Money` which has `CurrencyCode` and `Amount`.
+
+```csharp
+public record Money(string CurrencyCode, decimal Amount) : ValueObject;
+```
+
+Now you can add custom logic whenever an entity contains a Money property, for example custom mapping, validation, etc; all centralized in one place

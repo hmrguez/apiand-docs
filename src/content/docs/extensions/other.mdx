@@ -1,0 +1,100 @@
+---
+title: "Other"
+sidebar:
+    order: 4
+---
+
+## Result pattern
+
+Exceptions in C# are expensive to thrown. They introduce a lot of runtime overhead and generally disrupt the flow of the application. That's why nowadays a lot of ASP.NET APIs implement the result pattern.
+
+It consists of instead of possibly throwing an exception, each method returns a result object that contains the result of the operation and any errors that may have occurred. This allows for a more predictable and efficient error handling mechanism.
+
+`Apiand.Extensions` provides with 2 classes to use it correctly `Error` and `Result`.
+
+### Error
+
+The `Error` class is used to represent an error that occurred during the execution of a method.
+
+```csharp
+public sealed record Error(string Code, string Description, HttpStatusCode StatusCode = HttpStatusCode.BadRequest);
+```
+
+Code is a unique identifier for the specific error like *P-404* or *project-not-found*, description is a human readable description of the error and status code is the HTTP status code that should be returned to the client.
+
+### Result
+
+The `Result` class is used to represent the result of an operation. It contains an optional value of type `T` and an optional error.
+
+```csharp
+// Untyped
+public class Result
+{
+    public bool IsSuccess => Error == null;
+
+    public Error? Error { get; protected init; }
+}
+```
+
+```csharp
+// Typed
+public class Result<T> : Result
+{
+    public T? Data { get; private init; }
+}
+```
+
+The `Result` class has a few methods to help you create results easily:
+
+```csharp
+// Untyped
+public static Result Succeed()
+{
+    return new Result<T>
+    {
+        Error = null
+    };
+}
+
+// Typed
+public static Result<T> Succeed(T data)
+{
+    return new Result<T>
+    {
+        Data = data,
+        Error = null
+    };
+}
+
+public static new Result<T> Fail(Error error)
+{
+    return new Result<T>
+    {
+        Error = error
+    };
+}
+```
+
+Also with implicit operators to convert from `T` to `Result<T>` and from `Error` to a failed result
+
+## Enumeration pattern
+
+Enums in C# are not descriptive in some situations where the human-readable name might not be the same as the enum name. For example, the `HttpStatusCode` enum has a lot of values that are not descriptive at all like `HttpStatusCode.Continue` or `HttpStatusCode.NotImplemented`, and the names are space-separated, just camel cased.
+
+The Enumeration pattern is a way for you to manually provide a string value to the enum. Since it can't be done directly in C# we need to use classes or records.
+
+```csharp
+public record Enumeration(int Id, string Name);
+```
+
+The best practice for using Enumerations is having a class that implements it, that would be out "Enum" type, and all the values are static fields of it. For example:
+
+```csharp
+public record HttpStatusCode : Enumeration
+{
+    public static readonly HttpStatusCode Continue = new(100, "Continue");
+    public static readonly HttpStatusCode NotImplemented = new(501, "Not Implemented");
+}
+```
+
+It comes with methods like `FromId<T>` or `FromName<T>` which allow you to get the static member whose Id or Name match the parameter or `GetAll<T>` which returns all the members of the enumeration type.

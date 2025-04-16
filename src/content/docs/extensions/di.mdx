@@ -1,0 +1,105 @@
+---
+title: "Dependency injection"
+sidebar:
+    order: 3
+---
+
+## Service attribute
+
+The `Service` attribute is used to mark a class as a service that can be injected into other classes. It is part of the dependency injection (DI) system in Apiand and allows for automatic registration and resolution of services.
+
+### Usage
+
+To use the `Service` attribute, simply decorate your class with the `[Service]` attribute. For example:
+
+```csharp
+[Service]
+public class MyService: IMyService
+{
+    public void DoSomething()
+    {
+        // Implementation here
+    }
+}
+```
+
+Then we have a helper method that scans for every class with the `Service` attribute in a specific assembly and adds the required dependency injection from its parent interface.
+
+```csharp
+services.AddServicesWithAttribute(Assembly.GetExecutingAssembly());
+```
+
+:::note
+
+Here services refers to an IServiceCollection. If you are using the `Apiand` project template, this is already done for you in either the `Program.cs` file or in a Module (more about it below).
+
+:::
+
+### Scopes
+
+The `Service` attribute allows for a second parameter which defines the scope for which the service will be injected to:
+
+```csharp
+[Service(ServiceLifetimeType.Singleton)]
+...
+
+[Service(ServiceLifetimeType.Transient)]
+...
+
+[Service(ServiceLifetimeType.Scoped)]
+...
+```
+
+It uses `Scoped` by default
+
+## Module
+
+A module is a class that contains the DI configuration for a specific part of your application. It is used to group related services together and can be registered with the DI container, ideally located in each project of your solution.
+
+```csharp
+public interface IModule
+{
+    /// <summary>
+    /// Configures the application builder for the module, including services, logging, etc.
+    /// </summary>
+    /// <param name="builder">Generally the WebApplicationBuilder the program starts with</param>
+    /// <param name="configuration">The application configuration</param>
+    void ConfigureWebAppBuilder(IHostApplicationBuilder builder, IConfiguration configuration);
+
+    /// <summary>
+    /// Configures the middleware and request pipeline for the module.
+    /// </summary>
+    /// <param name="app">The application builder to configure the request pipeline.</param>
+    void ConfigureApplication(IApplicationBuilder app);
+
+    /// <summary>
+    /// Registers any module-specific mappings, such as AutoMapper profiles.
+    /// </summary>
+    void RegisterMappings();
+
+    /// <summary>
+    /// Gets the name of the module for logging and diagnostics.
+    /// </summary>
+    string Name { get; }
+
+    /// <summary>
+    /// Gets the priority of the module for ordering. Lower numbers load first.
+    /// </summary>
+    int Order { get; }
+
+    /// <summary>
+    /// Determines whether the module is enabled based on the configuration.
+    /// </summary>
+    /// <param name="configuration">The application configuration.</param>
+    /// <returns>True if the module is enabled; otherwise, false.</returns>
+    bool IsEnabled(IConfiguration configuration);
+}
+```
+
+:::caution
+
+For future versions we are going to provide with a clean method for adding all modules in your solution but for now you will need to do it manually
+
+If you want an example check the Program.cs file for the API in the DDD template
+
+:::
