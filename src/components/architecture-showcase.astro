@@ -12,9 +12,9 @@ const architectures = [
         pending: false
     },
     {
-        name: 'Hexagonal Architecture',
-        description: 'Isolates business logic from external concerns through ports and adapters',
-        features: ['Core Domain Isolation', 'Pluggable Adapters', 'Easy Testing', 'Infrastructure Independence'],
+        name: 'Modular Monolith + Vertical Slice',
+        description: 'Combines modular organization with feature-focused vertical slices for maintainable monoliths',
+        features: ['Feature Encapsulation', 'Reduced Cross-Module Dependencies', 'Independent Feature Development', 'Schema Isolation'],
         color: 'purple',
         pending: true
     },
@@ -79,7 +79,7 @@ const getColorClasses = (color: string) => {
                 const colorClasses = getColorClasses(architecture.color);
                 return (
                     <Card>
-                        <div class="flex items-center justify-between mb-4">
+                        <div class="flex items-baseline justify-between mb-4">
                             <div
                                 class="inline-block rounded-full px-3 py-1 text-sm font-medium arch-badge"
                                 style={`background-color: ${colorClasses.bg}; border: 1px solid ${colorClasses.border}; color: ${colorClasses.text};`}>
